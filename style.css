@@ -1,0 +1,147 @@
+@import url("https://fonts.googleapis.com/css?family=Merriweather:300, 300i");
+@import url("https://fonts.googleapis.com/css?family=Oswald:500,600,700");
+html, body {
+  font-size: 10px;
+  margin: 0; }
+
+.container {
+  max-width: 1200px;
+  padding: 3rem 1.5rem;
+  margin: 0 auto;
+  position: relative; }
+  .container h1, .container h2, .container h3, .container h4, .container h5, .container h6, .container p, .container i, .container b, .container a {
+    padding: 0; }
+  .container h1 {
+    font-family: "Oswald", sans-serif;
+    font-weight: 700;
+    font-size: 5rem;
+    line-height: 5rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.25rem;
+    margin: 0 auto 3rem; }
+  .container h2 {
+    font-family: "Merriweather", serif;
+    font-weight: 300;
+    font-size: 1.4rem;
+    line-height: 3rem;
+    text-align: center;
+    margin: 0 auto 2rem; }
+  .container h3 {
+    font-family: "Oswald", sans-serif;
+    font-weight: 700;
+    font-size: 2.6rem;
+    line-height: 3.6rem;
+    letter-spacing: 0.15rem;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0 auto 3rem; }
+    .container h3 span.large {
+      font-size: 4rem;
+      line-height: 5rem; }
+  .container h4 {
+    font-family: "Merriweather", serif;
+    font-weight: 300;
+    font-size: 2rem;
+    line-height: 3rem;
+    letter-spacing: 0.15rem;
+    text-transform: uppercase;
+    text-align: center; }
+  .container p {
+    font-family: "Merriweather", serif;
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 2.5rem;
+    max-width: 650px;
+    margin: 0 auto 3rem; }
+    .container p span.divider {
+      position: relative;
+      bottom: -9px;
+      width: 2px;
+      background: black;
+      height: 2.4rem;
+      display: inline-block;
+      margin: 0 1rem; }
+  .container a.btn {
+    padding: 1rem 2rem;
+    border: 2px solid #000;
+    font-size: 1.2rem;
+    line-height: 1.2rem;
+    display: inline-block;
+    margin: 1rem auto 2rem;
+    font-family: "Oswald", sans-serif;
+    text-transform: uppercase;
+    text-decoration: none;
+    position: relative; }
+    .container a.btn:hover {
+      cursor: pointer; }
+    .container a.btn.outline {
+      color: #000; }
+      .container a.btn.outline:after {
+        content: '';
+        height: 0%;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.15);
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        transition: all 0.35s ease-in-out;
+        z-index: -1; }
+      .container a.btn.outline:hover {
+        color: #fff; }
+        .container a.btn.outline:hover:after {
+          height: 100%; }
+    .container a.btn.solid {
+      color: #fff; }
+      .container a.btn.solid:after {
+        content: '';
+        height: 100%;
+        width: 100%;
+        background: black;
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: all 0.35s ease-in-out;
+        z-index: -1; }
+      .container a.btn.solid:hover {
+        color: #000; }
+        .container a.btn.solid:hover:after {
+          height: 0%; }
+  .container .filters {
+    text-align: center;
+    margin: 0 auto 3rem; }
+    .container .filters h3 {
+      margin: 0 auto 1.5rem; }
+    .container .filters a.btn {
+      margin: 0 1rem; }
+  .container .table {
+    max-width: 750px;
+    margin: 0 auto 3rem; }
+    .container .table .row {
+      display: flex;
+      width: 100%;
+      text-decoration: none;
+      color: #000;
+      transition: all 0.35s ease-in-out; }
+      .container .table .row:first-of-type {
+        background: #000 !important;
+        color: #fff; }
+      .container .table .row:nth-of-type(2n + 1) {
+        background: rgba(0, 0, 0, 0.1); }
+      .container .table .row:hover {
+        cursor: pointer;
+        background: rgba(0, 0, 0, 0.05); }
+        .container .table .row:hover .col p {
+          font-weight: 700; }
+      .container .table .row .col {
+        padding: 0.5rem 1rem;
+        width: calc(100%/4);
+        flex-grow: 0; }
+        .container .table .row .col:first-of-type {
+          width: calc(100%/2); }
+        .container .table .row .col p {
+          margin: 0; }
+  .container #cases-at-college {
+    text-align: center; }

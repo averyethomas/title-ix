@@ -1,0 +1,226 @@
+// fonts
+@import url('https://fonts.googleapis.com/css?family=Merriweather:300, 300i');
+@import url('https://fonts.googleapis.com/css?family=Oswald:500,600,700');
+
+
+$serif: 'Merriweather', serif;
+$sans-serif: 'Oswald', sans-serif;
+
+html, body {
+	font-size: 10px;
+	margin: 0;
+}
+
+.container {
+	max-width: 1200px;
+	padding: 3rem 1.5rem;
+	margin: 0 auto;
+	position: relative;
+	
+	h1, h2, h3, h4, h5, h6, p, i, b, a {
+		padding: 0;
+	}
+	
+	h1 {
+		font-family: $sans-serif;
+		font-weight: 700;
+		font-size: 5rem;
+		line-height: 5rem;
+		text-align: center;
+		text-transform: uppercase;
+		letter-spacing: 0.25rem;
+		margin: 0 auto 3rem;
+	}
+	
+	h2 {
+		font-family: $serif;
+		font-weight: 300;
+		font-size: 1.4rem;
+		line-height: 3rem;
+		text-align: center;
+		margin: 0 auto 2rem;
+	}
+	
+	h3 {
+		font-family: $sans-serif;
+		font-weight: 700;
+		font-size: 2.6rem;
+		line-height: 3.6rem;
+		letter-spacing: 0.15rem;
+		text-transform: uppercase;
+		text-align: center;
+		margin: 0 auto 3rem;
+		
+		span.large {
+			font-size: 4rem;
+			line-height: 5rem;
+		}
+	}
+	
+	h4 {
+		font-family: $serif;
+		font-weight: 300;
+		font-size: 2rem;
+		line-height: 3rem;
+		letter-spacing: 0.15rem;
+		text-transform: uppercase;
+		text-align: center;
+	}
+	
+	p {
+		font-family: $serif;
+		font-weight: 300;
+		font-size: 1.2rem;
+		line-height: 2.5rem;
+		max-width: 650px;
+		margin: 0 auto 3rem;
+		
+		span.divider {
+			position: relative;
+		    bottom: -9px;
+		    width: 2px;
+		    background: black;
+		    height: 2.4rem;
+		    display: inline-block;
+		    margin: 0 1rem;		
+    	}
+	}
+	
+	a {
+		&.btn {
+			padding: 1rem 2rem;
+			border: 2px solid #000;
+			font-size: 1.2rem;
+			line-height: 1.2rem;
+			display: inline-block;
+			margin: 1rem auto 2rem;
+			font-family: $sans-serif;
+			text-transform: uppercase;
+			text-decoration: none;
+			position: relative;
+			
+			&:hover {
+				cursor: pointer;
+			}
+			
+			&.outline {
+				color: #000;
+				
+				&:after {
+					content: '';
+					height: 0%;
+					width: 100%;
+					background: rgba(#000, 0.15);
+					display: block;
+					position: absolute;
+					bottom: 0;
+					left: 0;
+					transition: all 0.35s ease-in-out;
+					z-index: -1;
+				}
+				
+				&:hover {
+					color: #fff;
+					
+					&:after {
+						height: 100%;
+					}
+				}
+			}
+			
+			&.solid {
+				color: #fff;
+				
+				&:after {
+					content: '';
+					height: 100%;
+					width: 100%;
+					background: rgba(#000, 1);
+					display: block;
+					position: absolute;
+					top: 0;
+					left: 0;
+					transition: all 0.35s ease-in-out;
+					z-index: -1;
+				}
+				
+				&:hover {
+					color: #000;
+					
+					&:after {
+						height: 0%;
+					}
+				}
+			}
+		}
+	}
+	
+	.filters {
+		text-align: center;
+		margin: 0 auto 3rem;
+		
+		h3 {
+			margin: 0 auto 1.5rem;
+		}
+		
+		a {
+			&.btn {
+				margin: 0 1rem;
+			}
+		}
+	}
+	
+	.table {
+		max-width: 750px;
+		margin: 0 auto 3rem;
+		
+		.row {
+			display: flex;
+			width: 100%;
+			text-decoration: none;
+			color: #000;
+			transition: all 0.35s ease-in-out;
+			
+			
+			
+			&:first-of-type {
+				background: #000 !important;
+				color: #fff;
+			}
+			
+			&:nth-of-type(2n + 1) {
+				background: rgba(#000, 0.1);
+			}
+			
+			&:hover {
+				cursor: pointer;
+				background: rgba(#000, 0.05);
+				
+				.col {
+					p {
+						font-weight: 700;
+					}
+				}
+			}
+			
+			.col {
+				padding: 0.5rem 1rem;
+				width: calc(100%/4);
+				flex-grow: 0;
+				
+				&:first-of-type {
+					width: calc(100%/2);
+				}
+				
+				
+				p {
+					margin: 0;
+				}
+			}
+		}
+	}
+	
+	#cases-at-college {
+		text-align: center;
+	}
+}
