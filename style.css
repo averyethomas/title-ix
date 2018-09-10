@@ -40,13 +40,13 @@ html, body {
       font-size: 4rem;
       line-height: 5rem; }
   .container h4 {
-    font-family: "Merriweather", serif;
+    font-family: "Oswald", sans-serif;
     font-weight: 300;
     font-size: 2rem;
     line-height: 3rem;
     letter-spacing: 0.15rem;
     text-transform: uppercase;
-    text-align: center; }
+    margin: 0 auto 1rem; }
   .container p {
     font-family: "Merriweather", serif;
     font-weight: 300;
@@ -54,6 +54,8 @@ html, body {
     line-height: 2.5rem;
     max-width: 650px;
     margin: 0 auto 3rem; }
+    .container p.centered {
+      text-align: center; }
     .container p span.divider {
       position: relative;
       bottom: -9px;
@@ -116,6 +118,57 @@ html, body {
       margin: 0 auto 1.5rem; }
     .container .filters a.btn {
       margin: 0 1rem; }
+  .container #map {
+    max-width: 1000px;
+    margin: 0 auto 3rem;
+    border: 1px solid red; }
+    .container #map #inner-map {
+      padding-bottom: 60%;
+      position: relative; }
+      .container #map #inner-map svg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); }
+      .container #map #inner-map .state {
+        fill: none;
+        stroke: #a9a9a9;
+        stroke-width: 1; }
+      .container #map #inner-map .state:hover {
+        fill-opacity: 0.5; }
+      .container #map #inner-map #tooltip {
+        position: absolute;
+        text-align: center;
+        padding: 20px;
+        margin: 10px;
+        font: 12px sans-serif;
+        background: lightsteelblue;
+        border: 1px;
+        border-radius: 2px;
+        pointer-events: none; }
+      .container #map #inner-map #tooltip h4 {
+        margin: 0;
+        font-size: 14px; }
+      .container #map #inner-map #tooltip {
+        background: rgba(0, 0, 0, 0.9);
+        border: 1px solid grey;
+        border-radius: 5px;
+        font-size: 12px;
+        width: auto;
+        padding: 4px;
+        color: white;
+        opacity: 0; }
+      .container #map #inner-map #tooltip table {
+        table-layout: fixed; }
+      .container #map #inner-map #tooltip tr td {
+        padding: 0;
+        margin: 0; }
+      .container #map #inner-map #tooltip tr td:nth-child(1) {
+        width: 50px; }
+      .container #map #inner-map #tooltip tr td:nth-child(2) {
+        text-align: center; }
   .container .table {
     max-width: 750px;
     margin: 0 auto 3rem; }
@@ -143,5 +196,49 @@ html, body {
           width: calc(100%/2); }
         .container .table .row .col p {
           margin: 0; }
+  .container #cases-in-state {
+    padding: 3rem 0; }
   .container #cases-at-college {
-    text-align: center; }
+    text-align: center;
+    padding: 3rem 0; }
+    .container #cases-at-college #college-graph {
+      max-width: 750px;
+      margin: 3rem auto; }
+      .container #cases-at-college #college-graph #inner-college-graph {
+        position: relative;
+        padding-bottom: 30%; }
+      .container #cases-at-college #college-graph svg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0; }
+        .container #cases-at-college #college-graph svg g {
+          height: 100%; }
+          .container #cases-at-college #college-graph svg g text.label {
+            font-family: "Merriweather", serif;
+            font-size: 4.5rem;
+            fill: #fff;
+            text-anchor: end; }
+          .container #cases-at-college #college-graph svg g text.zero {
+            fill: #000; }
+          .container #cases-at-college #college-graph svg g.y {
+            /*
+position: absolute;
+						left: -10px;
+						top: 50%;
+						transform: translateY(-50%);
+						border: 1px solid red;
+*/ }
+            .container #cases-at-college #college-graph svg g.y text {
+              text-anchor: end;
+              font-family: "Merriweather", serif;
+              font-size: 1.2rem; }
+  .container .about {
+    box-sizing: border-box;
+    max-width: 650px;
+    border: 1px solid #000;
+    margin: 0 auto;
+    padding: 2rem; }
+    .container .about p {
+      margin: 0; }
