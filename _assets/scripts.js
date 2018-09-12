@@ -13,93 +13,128 @@ $.get( "http://projects.chronicle.com/titleix/api/v1/cases/", function( data ) {
 			resolved_cases.push(data[i]);
 		} else if (data[i].status == 'active') {
 			active_cases.push(data[i]);
-
 		}
-		
-		if(countByState.includes(data[i].state_abbrev) == false){
-			num = 1;
-			countByState.push(data[i].state_abbrev);
-		} 
-
-/*
-		for(var i = 0; i < countByState; i++){
-			if(countByState[i].state.includes(data[i].state_abbrev) == false){
-				num = 1;
-				countByState.push({ state: data[i].state_abbrev, count: num });
-			}
-		}
-*/
-		
-/*
-		if(countByState.includes(data[i].state_abbrev) == false){
-			num = 1;
-			countByState.push({ state: data[i].state_abbrev, count: num });
-		} 
-*/	
 	}
+	
+	$('#cases-nationwide').empty().append(
+		'<div class="stat"><h4><span class="num">' + case_data.length + '</span><br>Total Cases</h4></div>' +
+		'<div class="stat"><h4><span class="num">' + active_cases.length + '</span><br>Total Cases</h4></div>' +
+		'<div class="stat"><h4><span class="num">' + resolved_cases.length + '</span><br>Total Cases</h4></div>'
+	)
+	
 });
-
- console.log(countByState);
 
 // MAP FUNCTION
 
 var drawMap = function(){
-	
-}
 
+	var width = 960;
+	var height = 500;
+
+	var projection = d3.geo.albersUsa()
+					   .translate([width/2, height/2])
+					   .scale([1000]);
+        
+	var path = d3.geo.path()
+					 .projection(projection); 
+
+	var color = d3.scale.linear()
+						.range(["rgb(213,222,217)","rgb(69,173,168)","rgb(84,36,55)","rgb(217,91,67)"]);
+
+	var svg = d3.select("#inner-map")
+				.append("svg")
+				.attr("width", width)
+				.attr("height", height);
+        
+/*
+	var div = d3.select("body")
+			    .append("div")   
+	    		.attr("class", "tooltip")               
+	    		.style("opacity", 0);
+*/
+
+
+	d3.json("_assets/us-states.json", function(json) {
+
+		svg.selectAll("path")
+			.data(json.features)
+			.enter()
+			.append("path")
+			.attr("d", path)
+			.style("stroke", "#fff")
+			.style("stroke-width", "1")
+			.on("click", function(d){
+				selectStateData(d.properties);
+			});
+			
+	});
+}
 drawMap();
 
 var selectStateData = function(state) {
 	
-	var url = 'http://projects.chronicle.com/titleix/api/v1/cases/?state_abbrev=' + state;
+	var url = 'http://projects.chronicle.com/titleix/api/v1/cases/?state_abbrev=' + state.abbrev;
 	
+	$('#cases-at-college').empty();
+
 	
 	$.get( url, function( data ) {
-		//console.log(data);
 		
-		$('#cases-in-state').append(
-			'<h3>Active Cases In<br><span class="large">' + data[0].state_name + '</span></h3>' + 
-			'<div class="row">' +
-			'<div class="col">' +  
-			'<p><b>College Name</b></p>'+
-			'</div>' +
-			'<div class="col">' +  
-			'<p><b>Sector</b></p>'+
-			'</div>' +
-			'<div class="col">' +  
-			'<p><b>Date Opened</b></p>'+
-			'</div>' +
-			'</div>'
-		)
-		
-		for(var i = 0; i < data.length; i++){
+		if(data.length > 1) {
 			
-			if(data[i].status == 'active'){
+			
+			$('#cases-in-state').empty().append(
+				'<h3>Cases In<br><span class="large">' + state.name + '</span></h3>' + 
+				'<div class="row">' +
+				'<div class="col">' +  
+				'<p><b>College Name</b></p>'+
+				'</div>' +
+				'<div class="col">' +  
+				'<p><b>Case Status</b></p>'+
+				'</div>' +
+				'<div class="col">' +  
+				'<p><b>Date Opened</b></p>'+
+				'</div>' +
+				'</div>'
+			);
+			
+			for(var i = 0; i < data.length; i++){
+				
 				$('#cases-in-state').append(
 					'<div class="row" onclick="selectCollegeData(' + data[i].college_unitid + ');">' +
 					'<div class="col">' +  
 					'<p>' + data[i].college + '</p>'+
 					'</div>' +
 					'<div class="col">' +  
-					'<p>' + data[i].sector + '</p>'+
+					'<p>' + data[i].status + '</p>'+
 					'</div>' +
 					'<div class="col">' +  
 					'<p>' + data[i].opened + '</p>'+
 					'</div>' +
 					'</div>'
 				);
-			}
-		}
 	
-		$('html,body').animate({
-        	scrollTop: $("#cases-in-state").offset().top},
-        'slow');
-
+			}
 		
+			$('html,body').animate({
+	        	scrollTop: $("#cases-in-state").offset().top},
+	        'slow');
+	        
+		} else {
+			
+			$('#cases-in-state').empty().append(
+				'<h3>No Data For<br><span class="large">' + state.name + '</h3>' 
+			);
+			
+			$('html,body').animate({
+	        	scrollTop: $("#cases-in-state").offset().top},
+	        'slow');
+
+		}
 	});
 }
 
-selectStateData('NY');
+//selectStateData('NC');
 
 var selectCollegeData = function(id) {
 	
