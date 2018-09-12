@@ -43,8 +43,11 @@ var drawMap = function(){
 
 	var svg = d3.select("#inner-map")
 				.append("svg")
+				.attr("preserveAspectRatio", "xMidYMid meet")
+				.attr("viewBox", "0 0 960 500")
 				.attr("width", width)
 				.attr("height", height);
+				
         
 /*
 	var div = d3.select("body")
@@ -60,6 +63,7 @@ var drawMap = function(){
 			.data(json.features)
 			.enter()
 			.append("path")
+			.attr("class", "state")
 			.attr("d", path)
 			.style("stroke", "#fff")
 			.style("stroke-width", "1")
@@ -68,6 +72,10 @@ var drawMap = function(){
 			});
 			
 	});
+	
+	function resize() { }
+	
+	d3.select(window).on('resize', resize);
 }
 drawMap();
 
@@ -180,27 +188,7 @@ var selectCollegeData = function(id) {
 		} else {
 			average_case_length = '<i>No Resolved Case Data</i>'
 		}
-		
-/*
-		var cases = [];
-				
-		for(var i = 0; i < data[0].cases.length; i++){
 			
-			var caseUrl = 'http://projects.chronicle.com/titleix/api/v1/cases/?case_id=' + data[0].cases[i];
-						
-			$.get( caseUrl, function( data ){
-				
-				cases.push(data[0]);
-				
-			});
-		}
-		
-		var average_length = 0;
-
-		// Calculate Case Length Average HERE
-		
-		console.log(active);
-*/			
 		drawBarGraph(resolved_cases_state.length, active_cases_state.length);
 	
 		$('#cases-at-college').append(
@@ -239,14 +227,14 @@ var drawBarGraph = function(value1, value2){
         left: 100
     };
 
-    var width = parseInt(d3.select("#inner-college-graph").style("width")) - margin.left - margin.right,
-    	height = (parseInt(d3.select("#inner-college-graph").style("width")) * .3) - margin.top - margin.bottom;
+    var width = 750 - margin.left - margin.right,
+    	height = 225 - margin.top - margin.bottom;
 
     var svg = d3.select("#inner-college-graph").append("svg")
-        //.attr("width", width + margin.left + margin.right)
-        //.attr("height", height + margin.top + margin.bottom)
         .attr("preserveAspectRatio", "xMidYMid meet")
         .attr("viewBox", "0 0 750 225")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 

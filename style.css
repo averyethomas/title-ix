@@ -134,10 +134,9 @@ html, body {
       margin: 0 1rem; }
   .container #map {
     max-width: 1000px;
-    margin: 0 auto 3rem;
-    border: 1px solid red; }
+    margin: 0 auto 3rem; }
     .container #map #inner-map {
-      padding-bottom: 60%;
+      padding-bottom: 52.08333%;
       position: relative; }
       .container #map #inner-map svg {
         position: absolute;
@@ -147,42 +146,10 @@ html, body {
         left: 50%;
         transform: translate(-50%, -50%); }
       .container #map #inner-map .state {
-        fill: none;
-        stroke: #a9a9a9;
-        stroke-width: 1; }
-      .container #map #inner-map .state:hover {
-        fill-opacity: 0.5; }
-      .container #map #inner-map #tooltip {
-        position: absolute;
-        text-align: center;
-        padding: 20px;
-        margin: 10px;
-        font: 12px sans-serif;
-        background: lightsteelblue;
-        border: 1px;
-        border-radius: 2px;
-        pointer-events: none; }
-      .container #map #inner-map #tooltip h4 {
-        margin: 0;
-        font-size: 14px; }
-      .container #map #inner-map #tooltip {
-        background: rgba(0, 0, 0, 0.9);
-        border: 1px solid grey;
-        border-radius: 5px;
-        font-size: 12px;
-        width: auto;
-        padding: 4px;
-        color: white;
-        opacity: 0; }
-      .container #map #inner-map #tooltip table {
-        table-layout: fixed; }
-      .container #map #inner-map #tooltip tr td {
-        padding: 0;
-        margin: 0; }
-      .container #map #inner-map #tooltip tr td:nth-child(1) {
-        width: 50px; }
-      .container #map #inner-map #tooltip tr td:nth-child(2) {
-        text-align: center; }
+        transition: all 0.35s ease-in-out; }
+        .container #map #inner-map .state:hover {
+          opacity: 0.25;
+          cursor: pointer; }
   .container .table {
     max-width: 750px;
     margin: 0 auto 3rem; }
@@ -225,8 +192,9 @@ html, body {
         position: absolute;
         width: 100%;
         height: 100%;
-        top: 0;
-        left: 0; }
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); }
         .container #cases-at-college #college-graph svg g {
           height: 100%; }
           .container #cases-at-college #college-graph svg g text.label {
