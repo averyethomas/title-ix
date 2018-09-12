@@ -65,6 +65,11 @@ html, body {
 		letter-spacing: 0.15rem;
 		text-transform: uppercase;
 		margin: 0 auto 1rem;
+		
+		span.num {
+			font-size: 5rem;
+			line-height: 5rem;
+		}
 	}
 	
 	p {
@@ -155,6 +160,22 @@ html, body {
 						height: 0%;
 					}
 				}
+			}
+		}
+	}
+	
+	#cases-nationwide {
+		text-align: center;
+		
+		.stat {
+			text-align: center;
+			margin: 0 auto 1rem;
+			
+			@media all and (min-width: 650px){
+				width: 175px;
+				display: inline-block;
+				margin: 0 1rem 1rem;
+				vertical-align: top;
 			}
 		}
 	}

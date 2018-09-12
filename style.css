@@ -47,6 +47,9 @@ html, body {
     letter-spacing: 0.15rem;
     text-transform: uppercase;
     margin: 0 auto 1rem; }
+    .container h4 span.num {
+      font-size: 5rem;
+      line-height: 5rem; }
   .container p {
     font-family: "Merriweather", serif;
     font-weight: 300;
@@ -111,6 +114,17 @@ html, body {
         color: #000; }
         .container a.btn.solid:hover:after {
           height: 0%; }
+  .container #cases-nationwide {
+    text-align: center; }
+    .container #cases-nationwide .stat {
+      text-align: center;
+      margin: 0 auto 1rem; }
+      @media all and (min-width: 650px) {
+        .container #cases-nationwide .stat {
+          width: 175px;
+          display: inline-block;
+          margin: 0 1rem 1rem;
+          vertical-align: top; } }
   .container .filters {
     text-align: center;
     margin: 0 auto 3rem; }

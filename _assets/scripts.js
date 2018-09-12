@@ -18,8 +18,8 @@ $.get( "http://projects.chronicle.com/titleix/api/v1/cases/", function( data ) {
 	
 	$('#cases-nationwide').empty().append(
 		'<div class="stat"><h4><span class="num">' + case_data.length + '</span><br>Total Cases</h4></div>' +
-		'<div class="stat"><h4><span class="num">' + active_cases.length + '</span><br>Total Cases</h4></div>' +
-		'<div class="stat"><h4><span class="num">' + resolved_cases.length + '</span><br>Total Cases</h4></div>'
+		'<div class="stat"><h4><span class="num">' + active_cases.length + '</span><br>Active Cases</h4></div>' +
+		'<div class="stat"><h4><span class="num">' + resolved_cases.length + '</span><br>Resolved Cases</h4></div>'
 	)
 	
 });
