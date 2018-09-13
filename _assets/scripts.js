@@ -1,4 +1,306 @@
-var countByState = [];
+var countByState = [
+	{
+		state: 'AL',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'AK',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'AZ',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'AR',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'CA',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'CO',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'CT',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'DE',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'FL',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'GA',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'HI',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'ID',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'IL',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'IN',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'IA',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'KS',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'KY',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'LA',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'ME',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'MD',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'MA',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'MI',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'MN',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'MS',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'MO',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'MT',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'NE',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'NV',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'NH',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'NJ',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'NM',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'NY',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'NC',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'ND',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'OH',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'OK',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'OR',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'PA',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'RI',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'SC',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'SD',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'TN',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'TX',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'UT',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'VT',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'VA',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'WA',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'WV',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'WI',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	},
+	{
+		state: 'WY',
+		total: 0, 
+		resolved: 0,
+		active: 0,
+	}
+];
+
 var case_data = [];
 var resolved_cases = [];
 var active_cases = [];
@@ -14,7 +316,24 @@ $.get( "http://projects.chronicle.com/titleix/api/v1/cases/", function( data ) {
 		} else if (data[i].status == 'active') {
 			active_cases.push(data[i]);
 		}
+		
+		for(var j = 0; j < countByState.length; j++) {
+			if(data[i].state_abbrev === countByState[j].state){
+				if(data[i].status == 'resolved') {
+					countByState[j].total+=1;
+					countByState[j].resolved+=1;
+				} else if (data[i].status == 'active') {
+					countByState[j].total+=1;
+					countByState[j].active+=1;				
+				}
+			}
+			
+		}
 	}
+	
+	//console.log(countByState);
+	
+	drawMap(countByState);
 	
 	$('#cases-nationwide').empty().append(
 		'<div class="stat"><h4><span class="num">' + case_data.length + '</span><br>Total Cases</h4></div>' +
@@ -26,7 +345,7 @@ $.get( "http://projects.chronicle.com/titleix/api/v1/cases/", function( data ) {
 
 // MAP FUNCTION
 
-var drawMap = function(){
+var drawMap = function(countData){
 
 	var width = 960;
 	var height = 500;
@@ -58,6 +377,33 @@ var drawMap = function(){
 
 
 	d3.json("_assets/us-states.json", function(json) {
+		
+		for (var i = 0; i < countData.length; i++) {
+
+			var dataState = countData[i].state;
+		
+			// Grab data value 
+// 			var dataValue = data[i].visited;
+		
+			// Find the corresponding state inside the GeoJSON
+			for (var j = 0; j < json.features.length; j++)  {
+				var jsonState = json.features[j].properties.abbrev;
+		
+				if (dataState == jsonState) {
+					
+					console.log(dataState);
+		
+					// Copy the data value into the JSON
+					json.features[j].properties.total = countData[i].total; 
+					json.features[j].properties.resolved = countData[i].resolved
+					json.features[j].properties.active = countData[i].active;
+					// Stop looking through the JSON
+					break;
+				}
+			}
+		}
+		
+		console.log(json);
 
 		svg.selectAll("path")
 			.data(json.features)
@@ -77,7 +423,7 @@ var drawMap = function(){
 	
 	d3.select(window).on('resize', resize);
 }
-drawMap();
+//drawMap();
 
 var selectStateData = function(state) {
 	
