@@ -368,12 +368,10 @@ var drawMap = function(countData){
 				.attr("height", height);
 				
         
-/*
-	var div = d3.select("body")
+	var div = d3.select("#inner-map")
 			    .append("div")   
 	    		.attr("class", "tooltip")               
 	    		.style("opacity", 0);
-*/
 
 
 	d3.json("_assets/us-states.json", function(json) {
@@ -390,9 +388,7 @@ var drawMap = function(countData){
 				var jsonState = json.features[j].properties.abbrev;
 		
 				if (dataState == jsonState) {
-					
-					console.log(dataState);
-		
+							
 					// Copy the data value into the JSON
 					json.features[j].properties.total = countData[i].total; 
 					json.features[j].properties.resolved = countData[i].resolved
@@ -415,7 +411,22 @@ var drawMap = function(countData){
 			.style("stroke-width", "1")
 			.on("click", function(d){
 				selectStateData(d.properties);
-			});
+			})
+			.on("mouseover", function(d) {      
+		    	div.transition()        
+		      	   .duration(200)      
+		           .style("opacity", .9);      
+		           div.html('<b>' + d.properties.name + '</b><p>Active: ' + d.properties.active + '<br/>Resolved: ' + d.properties.resolved + '<br/>Total: ' + d.properties.total + '</p>')
+		           .style("left", d + "px")     
+		           .style("top", d + "px");    
+			})   
+
+		    // fade out tooltip on mouse out               
+		    .on("mouseout", function(d) {       
+		        div.transition()        
+		           .duration(500)      
+		           .style("opacity", 0);   
+		    });
 			
 	});
 	
