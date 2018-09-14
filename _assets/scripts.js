@@ -331,9 +331,7 @@ $.get( "http://projects.chronicle.com/titleix/api/v1/cases/", function( data ) {
 		}
 	}
 	
-	//console.log(countByState);
-	
-	drawMap(countByState);
+	drawMap(countByState, 'total');
 	
 	$('#cases-nationwide').empty().append(
 		'<div class="stat"><h4><span class="num">' + case_data.length + '</span><br>Total Cases</h4></div>' +
@@ -345,7 +343,14 @@ $.get( "http://projects.chronicle.com/titleix/api/v1/cases/", function( data ) {
 
 // MAP FUNCTION
 
-var drawMap = function(countData){
+var drawMap = function(countData, value){
+	
+	console.log(value);
+	
+	$('#inner-map').empty();
+	
+	$('.map-filter').removeClass('solid').addClass('outline');
+	$('#' + value).removeClass('outline').addClass('solid');
 
 	var width = 960;
 	var height = 500;
@@ -372,34 +377,34 @@ var drawMap = function(countData){
 			    .append("div")   
 	    		.attr("class", "tooltip")               
 	    		.style("opacity", 0);
-
+	
+	var totalMax = 0;
 
 	d3.json("_assets/us-states.json", function(json) {
 		
 		for (var i = 0; i < countData.length; i++) {
+			
+			if(countData[i].total > totalMax){
+				totalMax = countData[i].total;
+			}
 
 			var dataState = countData[i].state;
 		
-			// Grab data value 
-// 			var dataValue = data[i].visited;
-		
-			// Find the corresponding state inside the GeoJSON
 			for (var j = 0; j < json.features.length; j++)  {
 				var jsonState = json.features[j].properties.abbrev;
 		
 				if (dataState == jsonState) {
 							
-					// Copy the data value into the JSON
 					json.features[j].properties.total = countData[i].total; 
 					json.features[j].properties.resolved = countData[i].resolved
 					json.features[j].properties.active = countData[i].active;
-					// Stop looking through the JSON
+					
 					break;
 				}
 			}
 		}
-		
-		console.log(json);
+			
+		var findColor = d3.scale.linear().domain([1,totalMax]).range(["#fff5eb","#f06230"]);
 
 		svg.selectAll("path")
 			.data(json.features)
@@ -407,8 +412,31 @@ var drawMap = function(countData){
 			.append("path")
 			.attr("class", "state")
 			.attr("d", path)
-			.style("stroke", "#fff")
+			.style("stroke", "#999999")
 			.style("stroke-width", "1")
+			.style("fill", function(d) {
+				
+				if(value == 'total') {
+					if (d.properties.total == 0) {
+						return "#fff";
+					} else {
+						return findColor(d.properties.total);
+					}
+				} else if(value == 'active') {
+					if (d.properties.active == 0) {
+						return "#fff";
+					} else {
+						return findColor(d.properties.total);
+					}
+				} else if(value == 'resolved') {
+					if (d.properties.resolved == 0) {
+						return "#fff";
+					} else {
+						return findColor(d.properties.total);
+					}
+				}
+				
+			})
 			.on("click", function(d){
 				selectStateData(d.properties);
 			})
@@ -419,9 +447,7 @@ var drawMap = function(countData){
 		           div.html('<b>' + d.properties.name + '</b><p>Active: ' + d.properties.active + '<br/>Resolved: ' + d.properties.resolved + '<br/>Total: ' + d.properties.total + '</p>')
 		           .style("left", d + "px")     
 		           .style("top", d + "px");    
-			})   
-
-		    // fade out tooltip on mouse out               
+			})              
 		    .on("mouseout", function(d) {       
 		        div.transition()        
 		           .duration(500)      
@@ -430,12 +456,19 @@ var drawMap = function(countData){
 			
 	});
 	
+	/*
+var legend = d3.select("#inner-map")
+				   .append("svg")
+				   .attr("class", "legend")
+				   .append("rect")
+				   .attr("width", width/4)
+				   .attr("height", "25px")
+*/
+	
 	function resize() { }
 	
 	d3.select(window).on('resize', resize);
 }
-//drawMap();
-
 var selectStateData = function(state) {
 	
 	var url = 'http://projects.chronicle.com/titleix/api/v1/cases/?state_abbrev=' + state.abbrev;
@@ -498,8 +531,6 @@ var selectStateData = function(state) {
 		}
 	});
 }
-
-//selectStateData('NC');
 
 var selectCollegeData = function(id) {
 	

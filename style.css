@@ -49,7 +49,8 @@ html, body {
     margin: 0 auto 1rem; }
     .container h4 span.num {
       font-size: 5rem;
-      line-height: 5rem; }
+      line-height: 5rem;
+      color: #f06230; }
   .container p {
     font-family: "Merriweather", serif;
     font-weight: 300;
@@ -67,53 +68,58 @@ html, body {
       height: 2.4rem;
       display: inline-block;
       margin: 0 1rem; }
-  .container a.btn {
-    padding: 1rem 2rem;
-    border: 2px solid #000;
-    font-size: 1.2rem;
-    line-height: 1.2rem;
-    display: inline-block;
-    margin: 1rem auto 2rem;
-    font-family: "Oswald", sans-serif;
-    text-transform: uppercase;
-    text-decoration: none;
-    position: relative; }
-    .container a.btn:hover {
-      cursor: pointer; }
-    .container a.btn.outline {
-      color: #000; }
-      .container a.btn.outline:after {
-        content: '';
-        height: 0%;
-        width: 100%;
-        background: rgba(0, 0, 0, 0.15);
-        display: block;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        transition: all 0.35s ease-in-out;
-        z-index: -1; }
-      .container a.btn.outline:hover {
-        color: #fff; }
+  .container a {
+    color: #f06230;
+    transition: opacity 0.35s ease-in-out; }
+    .container a:hover {
+      opacity: 0.5; }
+    .container a.btn {
+      padding: 1rem 2rem;
+      border: 2px solid #000;
+      font-size: 1.2rem;
+      line-height: 1.2rem;
+      display: inline-block;
+      margin: 1rem auto 2rem;
+      font-family: "Oswald", sans-serif;
+      text-transform: uppercase;
+      text-decoration: none;
+      position: relative; }
+      .container a.btn:hover {
+        cursor: pointer;
+        opacity: 1; }
+      .container a.btn.outline {
+        color: #000; }
+        .container a.btn.outline:after {
+          content: '';
+          height: 0%;
+          width: 100%;
+          background: rgba(240, 98, 48, 0.15);
+          display: block;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          transition: all 0.35s ease-in-out;
+          z-index: -1; }
         .container a.btn.outline:hover:after {
           height: 100%; }
-    .container a.btn.solid {
-      color: #fff; }
-      .container a.btn.solid:after {
-        content: '';
-        height: 100%;
-        width: 100%;
-        background: black;
-        display: block;
-        position: absolute;
-        top: 0;
-        left: 0;
-        transition: all 0.35s ease-in-out;
-        z-index: -1; }
-      .container a.btn.solid:hover {
-        color: #000; }
-        .container a.btn.solid:hover:after {
-          height: 0%; }
+      .container a.btn.solid {
+        color: #fff;
+        background: rgba(240, 98, 48, 0.15); }
+        .container a.btn.solid:after {
+          content: '';
+          height: 100%;
+          width: 100%;
+          background: black;
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          transition: all 0.35s ease-in-out;
+          z-index: -1; }
+        .container a.btn.solid:hover {
+          color: #000; }
+          .container a.btn.solid:hover:after {
+            height: 0%; }
   .container #cases-nationwide {
     text-align: center; }
     .container #cases-nationwide .stat {
@@ -180,13 +186,16 @@ html, body {
       .container .table .row:first-of-type {
         background: #000 !important;
         color: #fff; }
+        .container .table .row:first-of-type:hover .col p {
+          color: #fff; }
       .container .table .row:nth-of-type(2n + 1) {
         background: rgba(0, 0, 0, 0.1); }
       .container .table .row:hover {
         cursor: pointer;
-        background: rgba(0, 0, 0, 0.05); }
+        background: rgba(240, 98, 48, 0.05); }
         .container .table .row:hover .col p {
-          font-weight: 700; }
+          font-weight: 700;
+          color: #f06230; }
       .container .table .row .col {
         padding: 0.5rem 1rem;
         width: calc(100%/4);
@@ -215,25 +224,19 @@ html, body {
         transform: translate(-50%, -50%); }
         .container #cases-at-college #college-graph svg g {
           height: 100%; }
+          .container #cases-at-college #college-graph svg g rect {
+            fill: #f06230; }
           .container #cases-at-college #college-graph svg g text.label {
             font-family: "Merriweather", serif;
             font-size: 4.5rem;
             fill: #fff;
             text-anchor: end; }
           .container #cases-at-college #college-graph svg g text.zero {
-            fill: #000; }
-          .container #cases-at-college #college-graph svg g.y {
-            /*
-position: absolute;
-						left: -10px;
-						top: 50%;
-						transform: translateY(-50%);
-						border: 1px solid red;
-*/ }
-            .container #cases-at-college #college-graph svg g.y text {
-              text-anchor: end;
-              font-family: "Merriweather", serif;
-              font-size: 1.2rem; }
+            fill: #f06230; }
+          .container #cases-at-college #college-graph svg g.y text {
+            text-anchor: end;
+            font-family: "Merriweather", serif;
+            font-size: 1.2rem; }
   .container .about {
     box-sizing: border-box;
     max-width: 650px;

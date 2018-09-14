@@ -13,15 +13,17 @@
 		<div class="container">
 			<h1>Title IX</h1>
 			<h2></h2>
-			<p class="centered">Avery Thomas<span class="divider"> </span>September 10, 2018</p>
-			<p>Title IX is an American civil rights law that was passed as part of the Education Amendments Act of 1972. It states: <i>"No person in the United States shall, on the basis of sex, be excluded from participation in, be denied the benefits of, or be subjected to discrimination under any education program or activity receiving Federal financial assistance."</i></p>
-			<p>While Title IX does not specifically mention rape or sexual assault, it is now interpreted to mean that a university must investigate and resolve student reports of any type of sexual misconduct as victims were considered subjects of discrimination under Title IX. An investigation by the college or university remains separate from any criminal investigations. Both types of investigations are dependent on the victim reporting the crime, which requires a university and police force to cultivate a safe environment for victims. On April 4, 2011, the U.S. Department of Education's Office for Civil Rights sent published a letter about sexual violence urging schools to protect students who report acts of sexual misconduct and to resolve their reports. This is the date that <a href="https://projects.chronicle.com/titleix/about/" target="_blank">the dataset from The Chronicle of Higher Education</a> begins.</p>
+			<p class="centered">Avery Thomas<span class="divider"> </span>September 13, 2018</p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eget aliquam nunc. Sed auctor nibh in purus tempor pretium. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse malesuada leo eget varius cursus. Fusce consequat fermentum diam, ut consectetur velit iaculis vel. Etiam venenatis eleifend efficitur.</i></p>
+			<p>Pellentesque placerat libero ut porttitor pulvinar. Sed pellentesque lectus consectetur magna gravida, in rhoncus magna euismod. Nullam et velit mauris. Maecenas imperdiet ipsum quis dictum elementum. Aliquam a nibh arcu. Mauris consectetur est nec arcu rutrum, commodo blandit arcu ornare. Fusce suscipit semper lectus, vitae commodo ante tincidunt at. Integer ac elit id dolor egestas convallis. Morbi nec auctor lorem. Cras lacinia eu augue eu bibendum.</p>
 			<h3>Cases Nationwide</h3>
 			<div id="cases-nationwide"></div>
 			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eget aliquam nunc. Sed auctor nibh in purus tempor pretium. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse malesuada leo eget varius cursus. Fusce consequat fermentum diam, ut consectetur velit iaculis vel. Etiam venenatis eleifend efficitur.</p>
 			<div class="filters">
 				<h3>Cases By State</h3>
-				<a class="btn solid" disabled>Total</a><a class="btn outline" disabled>Active</a><a class="btn outline" disabled>Resolved</a>
+				<a id="total" class="btn outline map-filter" disabled onclick="drawMap(countByState, 'total');">Total</a>
+				<a id="active" class="btn outline map-filter" disabled onclick="drawMap(countByState, 'active');">Active</a>
+				<a id="resolved" class="btn outline map-filter" disabled onclick="drawMap(countByState, 'resolved');">Resolved</a>
 			</div>			
 			<div id="map">
 				<div id="inner-map">
