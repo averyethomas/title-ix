@@ -301,11 +301,15 @@ var countByState = [
 	}
 ];
 
+// SET UP ARRAY VARIABLES
+
 var case_data = [];
 var resolved_cases = [];
 var active_cases = [];
 
-$.get( "http://projects.chronicle.com/titleix/api/v1/cases/", function( data ) {
+// GET NATIONAL CASE DATA
+
+$.get( 'http://projects.chronicle.com/titleix/api/v1/cases/', function( data ) {
 	
 	for(var i = 0; i < data.length; i++){
 		
@@ -345,8 +349,6 @@ $.get( "http://projects.chronicle.com/titleix/api/v1/cases/", function( data ) {
 
 var drawMap = function(countData, value){
 	
-	console.log(value);
-	
 	$('#inner-map').empty();
 	
 	$('.map-filter').removeClass('solid').addClass('outline');
@@ -373,7 +375,7 @@ var drawMap = function(countData, value){
 				.attr("height", height);
 				
         
-	var div = d3.select("#inner-map")
+	var div = d3.select(".container")
 			    .append("div")   
 	    		.attr("class", "tooltip")               
 	    		.style("opacity", 0);
@@ -418,19 +420,19 @@ var drawMap = function(countData, value){
 				
 				if(value == 'total') {
 					if (d.properties.total == 0) {
-						return "#fff";
+						return "#999999";
 					} else {
 						return findColor(d.properties.total);
 					}
 				} else if(value == 'active') {
 					if (d.properties.active == 0) {
-						return "#fff";
+						return "#999999";
 					} else {
 						return findColor(d.properties.total);
 					}
 				} else if(value == 'resolved') {
 					if (d.properties.resolved == 0) {
-						return "#fff";
+						return "#999999";
 					} else {
 						return findColor(d.properties.total);
 					}
@@ -445,8 +447,8 @@ var drawMap = function(countData, value){
 		      	   .duration(200)      
 		           .style("opacity", .9);      
 		           div.html('<b>' + d.properties.name + '</b><p>Active: ' + d.properties.active + '<br/>Resolved: ' + d.properties.resolved + '<br/>Total: ' + d.properties.total + '</p>')
-		           .style("left", d + "px")     
-		           .style("top", d + "px");    
+		           .style("left", (d3.event.pageX) + "px")		
+				   .style("top", (d3.event.pageY - 28) + "px");   
 			})              
 		    .on("mouseout", function(d) {       
 		        div.transition()        
@@ -456,19 +458,25 @@ var drawMap = function(countData, value){
 			
 	});
 	
-	/*
-var legend = d3.select("#inner-map")
-				   .append("svg")
-				   .attr("class", "legend")
-				   .append("rect")
-				   .attr("width", width/4)
-				   .attr("height", "25px")
-*/
-	
 	function resize() { }
 	
 	d3.select(window).on('resize', resize);
 }
+
+// SCROLL TO FUNCTION
+
+var scrollTo = function(id) {
+	$('html, body').animate({ scrollTop: $('#' + id).offset().top }, 'slow');
+}
+
+// BACK TO MAP FUNCTION
+
+$('#back-to-map').click(function(){
+	scrollTo('map')
+});
+
+// GET CASE DATA FOR EACH STATE
+
 var selectStateData = function(state) {
 	
 	var url = 'http://projects.chronicle.com/titleix/api/v1/cases/?state_abbrev=' + state.abbrev;
@@ -478,7 +486,7 @@ var selectStateData = function(state) {
 	
 	$.get( url, function( data ) {
 		
-		if(data.length > 1) {
+		if(data.length >= 1) {
 			
 			
 			$('#cases-in-state').empty().append(
@@ -513,10 +521,9 @@ var selectStateData = function(state) {
 				);
 	
 			}
-		
-			$('html,body').animate({
-	        	scrollTop: $("#cases-in-state").offset().top},
-	        'slow');
+
+			scrollTo('cases-in-state');
+
 	        
 		} else {
 			
@@ -524,13 +531,13 @@ var selectStateData = function(state) {
 				'<h3>No Data For<br><span class="large">' + state.name + '</h3>' 
 			);
 			
-			$('html,body').animate({
-	        	scrollTop: $("#cases-in-state").offset().top},
-	        'slow');
+			scrollTo('cases-in-state');
 
 		}
 	});
 }
+
+// GET DATA FOR EACH UNIVERSITY
 
 var selectCollegeData = function(id) {
 	
@@ -581,36 +588,35 @@ var selectCollegeData = function(id) {
 	
 		$('#cases-at-college').append(
 			'<p>Total Number of Cases: ' + data[0].cases.length + ' <span class="divider"> </span>Average Case Length: ' + average_case_length + '</p>' + 
-			'<a class="btn outline" target="_blank" href="https://projects.chronicle.com/titleix/campus/' + data[0].college_name.replace("&", "-and-").replace(/\s+/g, '-').replace(/[,+()$~%.'":*?<>{}]/g,'') +'">Learn More</a>'
+			'<a class="btn outline" target="_blank" href="https://projects.chronicle.com/titleix/campus/' + data[0].college_name.replace('&', '-and-').replace(/\s+/g, '-').replace(/[,+()$~%.'":*?<>{}]/g,'') + '">Learn More</a>'
 		)
-		
-		$('html,body').animate({
-        	scrollTop: $("#cases-at-college").offset().top},
-        'slow');
+        
+		scrollTo('cases-at-college');
+
 
 	});
 }
 
+// BAR GRAPH FUNCTION
+
 var drawBarGraph = function(value1, value2){
 	var data = [
 		{
-			"name": "Resolved Cases",
-            "value": value1,
+			'name': 'Resolved Cases',
+            'value': value1,
         },
         {
-            "name": "Active Cases",
-            "value": value2,
+            'name': 'Active Cases',
+            'value': value2,
         }];
 
-    //sort bars based on value
     data = data.sort(function (a, b) {
         return d3.ascending(a.value, b.value);
     })
 
-        //set up svg using margin conventions - we'll need plenty of room on the left for labels
     var margin = {
         top: 15,
-        right: 25,
+        right: 35,
         bottom: 15,
         left: 100
     };
@@ -618,13 +624,13 @@ var drawBarGraph = function(value1, value2){
     var width = 750 - margin.left - margin.right,
     	height = 225 - margin.top - margin.bottom;
 
-    var svg = d3.select("#inner-college-graph").append("svg")
-        .attr("preserveAspectRatio", "xMidYMid meet")
-        .attr("viewBox", "0 0 750 225")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    var svg = d3.select('#inner-college-graph').append('svg')
+        .attr('preserveAspectRatio', 'xMidYMid meet')
+        .attr('viewBox', '0 0 750 225')
+        .attr('width', width + margin.left + margin.right)
+        .attr('height', height + margin.top + margin.bottom)
+        .append('g')
+        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
     var x = d3.scale.linear()
         .range([0, width])
@@ -638,45 +644,40 @@ var drawBarGraph = function(value1, value2){
             return d.name;
         }));
 
-    //make y axis to show bar names
     var yAxis = d3.svg.axis()
         .scale(y)
         .tickSize(0)
-        .orient("left");
+        .orient('left');
 
-    var gy = svg.append("g")
-        .attr("class", "y axis")
+    var gy = svg.append('g')
+        .attr('class', 'y axis')
         .call(yAxis)
 
-    var bars = svg.selectAll(".bar")
+    var bars = svg.selectAll('.bar')
         .data(data)
         .enter()
-        .append("g")
+        .append('g')
 
-    //append rects
-    bars.append("rect")
-        .attr("class", "bar")
-        .attr("y", function (d) {
+    bars.append('rect')
+        .attr('class', 'bar')
+        .attr('y', function (d) {
             return y(d.name);
         })
-        .attr("height", y.rangeBand())
-        .attr("x", 0)
-        .attr("width", 0)
+        .attr('height', y.rangeBand())
+        .attr('x', 0)
+        .attr('width', 0)
         .transition()
         .duration(1500)
-        .attr("width", function (d) {
+        .attr('width', function (d) {
             return x(d.value);
         });
 
-    //add a value label to the right of each bar
-    bars.append("text")
-        .attr("class", function (d) { if(d.value == 0){ return "label zero"; } else { return "label"; } })
-        //y position of the label is halfway down the bar
-        .attr("y", function (d) {
+    bars.append('text')
+        .attr('class', function (d) { if(d.value == 0){ return 'label zero'; } else { return 'label'; } })
+        .attr('y', function (d) {
             return y(d.name) + y.rangeBand() / 2 + 15;
         })
-        //x position is 3 pixels to the right of the bar
-        .attr("x", function (d) {
+        .attr('x', function (d) {
 	        if(d.value == 0){ return x(d.value) + 35; }
 	        else { return x(d.value) - 15; }
             

@@ -5,7 +5,7 @@ html, body {
   margin: 0; }
 
 .container {
-  max-width: 1200px;
+  max-width: 1000px;
   padding: 3rem 1.5rem;
   margin: 0 auto;
   position: relative; }
@@ -19,13 +19,15 @@ html, body {
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 0.25rem;
-    margin: 0 auto 3rem; }
+    margin: 0 auto 1.5rem; }
   .container h2 {
-    font-family: "Merriweather", serif;
-    font-weight: 300;
-    font-size: 1.4rem;
-    line-height: 3rem;
+    font-family: "Oswald", sans-serif;
+    font-weight: 700;
+    font-size: 3rem;
+    line-height: 3.5rem;
     text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.25rem;
     margin: 0 auto 2rem; }
   .container h3 {
     font-family: "Oswald", sans-serif;
@@ -51,6 +53,16 @@ html, body {
       font-size: 5rem;
       line-height: 5rem;
       color: #f06230; }
+  .container h6 {
+    font-family: "Oswald", sans-serif;
+    font-weight: 300;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    text-transform: uppercase;
+    text-align: center;
+    color: #fff;
+    margin: 0;
+    padding: 0.5rem 0; }
   .container p {
     font-family: "Merriweather", serif;
     font-weight: 300;
@@ -62,10 +74,10 @@ html, body {
       text-align: center; }
     .container p span.divider {
       position: relative;
-      bottom: -9px;
-      width: 2px;
+      bottom: -5px;
+      width: 1px;
       background: black;
-      height: 2.4rem;
+      height: 2rem;
       display: inline-block;
       margin: 0 1rem; }
   .container a {
@@ -120,8 +132,27 @@ html, body {
           color: #000; }
           .container a.btn.solid:hover:after {
             height: 0%; }
+  .container .tooltip {
+    position: absolute;
+    text-align: center;
+    width: 100px;
+    padding: 0.5rem;
+    background: white;
+    pointer-events: none;
+    border: 2px solid #000; }
+    .container .tooltip b {
+      display: block;
+      font-family: "Oswald", sans-serif;
+      margin: 0 auto 0.25rem;
+      font-size: 1.5rem;
+      text-transform: uppercase; }
+    .container .tooltip p {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.8rem; }
   .container #cases-nationwide {
-    text-align: center; }
+    text-align: center;
+    margin: 0 auto 3rem; }
     .container #cases-nationwide .stat {
       text-align: center;
       margin: 0 auto 1rem; }
@@ -156,24 +187,6 @@ html, body {
         .container #map #inner-map .state:hover {
           opacity: 0.25;
           cursor: pointer; }
-      .container #map #inner-map .tooltip {
-        position: absolute;
-        text-align: center;
-        width: 100px;
-        padding: 0.5rem;
-        background: white;
-        pointer-events: none;
-        border: 2px solid #000; }
-        .container #map #inner-map .tooltip b {
-          display: block;
-          font-family: "Oswald", sans-serif;
-          margin: 0 auto 0.25rem;
-          font-size: 1.5rem;
-          text-transform: uppercase; }
-        .container #map #inner-map .tooltip p {
-          margin: 0;
-          font-size: 1rem;
-          line-height: 1.8rem; }
   .container .table {
     max-width: 750px;
     margin: 0 auto 3rem; }
@@ -203,7 +216,8 @@ html, body {
         .container .table .row .col:first-of-type {
           width: calc(100%/2); }
         .container .table .row .col p {
-          margin: 0; }
+          margin: 0;
+          text-transform: capitalize; }
   .container #cases-in-state {
     padding: 3rem 0; }
   .container #cases-at-college {
@@ -236,7 +250,7 @@ html, body {
           .container #cases-at-college #college-graph svg g.y text {
             text-anchor: end;
             font-family: "Merriweather", serif;
-            font-size: 1.2rem; }
+            font-size: 1.3rem; }
   .container .about {
     box-sizing: border-box;
     max-width: 650px;
@@ -245,3 +259,21 @@ html, body {
     padding: 2rem; }
     .container .about p {
       margin: 0; }
+  .container #back-to-map {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    width: 50px;
+    height: 50px;
+    background: url("_assets/usa.svg") 50% 50% no-repeat, #f06230;
+    background-size: contain;
+    text-align: center;
+    box-sizing: border-box;
+    cursor: pointer; }
+    @media all and (min-width: 1000px) {
+      .container #back-to-map {
+        right: calc((100% - 1000px)/2); } }
+    .container #back-to-map img {
+      width: 40px;
+      display: block;
+      margin: 0 auto; }
